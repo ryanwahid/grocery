@@ -66,6 +66,22 @@ class GroceryStore
 		end
 	end
 
+	def addProduct
+		newInfo = []
+		catNames = ["category", "name", "quantity", "serial_number", "cost", "sell_price"]
+		puts "Enter product data:"
+		
+		catNames.each_with_index {|name|
+		puts "Enter #{name}:" 
+		info = gets.chomp     
+		newInfo.push(info)
+ 		} 
+		 
+		newProduct = Product.new(newInfo[0], newInfo[1], newInfo[2].to_i, newInfo[3].to_i, newInfo[4].to_i, newInfo[5].to_i)
+		products.push(newProduct)
+		view_products
+	end
+
 	def view_products
 		# Cross-platform code to clear the terminal screen
 		Gem.win_platform? ? (system "cls") : (system "clear")
